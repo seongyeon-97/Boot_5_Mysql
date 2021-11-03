@@ -49,6 +49,9 @@ public class NoticeService implements BoardService{
 		// 1. 총 글의 갯수를 db에서 조회
 		Long totalCount = noticeMapper.getTotalCount(pager);
 		System.out.println("총 글의 갯수 : " + totalCount);
+		
+		// 2. 나머지 pager 기능 구현
+		pager.makeNum(totalCount);
 		return noticeMapper.getSelectList(pager);
 	}
 

@@ -45,6 +45,9 @@ public class QnaService implements BoardService{
 		// TODO Auto-generated method stub
 		pager.makeRow();
 		Long totalCount = qnaMapper.getTotalCount(pager);
+		
+		// 2. 나머지 pager 기능 구현
+		pager.makeNum(totalCount);
 		return qnaMapper.getSelectList(pager);
 	}
 

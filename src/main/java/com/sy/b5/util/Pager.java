@@ -7,12 +7,13 @@ public class Pager {
 	private String kind;
 	private String search;
 	
-	//------------------------
+	//------------------------------------------------------------
 	
 	private Integer perPage; //한 페이지당 몇개 출력?
 	private Integer pn; //현재 페이지 번호
 	private Integer startRow; //시작 번호
 	
+	//------------------------------------------------------------
 	
 	public void makeRow() {
 		this.startRow = (this.getPn()-1)*this.getPerPage();
@@ -31,6 +32,28 @@ public class Pager {
 		if(totalPage%perBlock != 0) {
 			totalBlock++;
 		}
+		
+		// 4. pn으로 현재 블럭 전호 구하기
+		// pn=1 -> curBlock=1 
+		// pn=5 -> curBlock=1
+		// pn=6 -> curBlock=2		
+		// pn=10 -> curBlock=2
+		Long curBlock = this.getPn()/perBlock;
+		if(this.getPn()%perBlock != 0) {
+			curBlock++;
+		}
+		
+		// 5. curBlock를 이용해서 시작번호, 끝번호 구하기
+		// curBlock  startNum  lastNum
+		//    1         1         5
+		//    2         6         10
+		//    3         11        15
+		Long startNum = (curBlock-1)*perBlock+1;
+		Long lastNum = curBlock*5;
+		
+		System.out.println("시작번호 : " + startNum);
+		System.out.println("끝번호 : " + lastNum);
+		
 	}
 	
 	// ---------------- setter, getter ------------------------
@@ -42,6 +65,7 @@ public class Pager {
 		}
 		return pn;
 	}
+	
 	// perPage가 null이거나 1미만일 경우를 대비해 두 경우 모두 10으로 return 받기
 	public Integer getPerPage() {
 		if(this.perPage == null || this.perPage < 1) {
@@ -49,8 +73,6 @@ public class Pager {
 		}
 		return perPage;
 	}
-	
-	
 	
 	public String getSearch() {
 		if(this.search == null) {
