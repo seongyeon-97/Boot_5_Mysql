@@ -15,12 +15,28 @@
 			<option value="title">Title</option>
 			<option value="contents">Contents</option>
 			<option value="writer">Writer</option>
-		</select> <input type="text" name="search">
+		</select> <input type="text" name="search">			
+		
 		<button type="submit">SEARCH</button>
 
 	</form>
 	<!------------------- search form --------------------->
+	
+	<!------------------- perPage select form --------------------->
+	<form action="./selectList">				
+		<select name="perPage">
+			<option value="5">5개씩 보기</option>
+			<option value="10">10개씩 보기</option>
+			<option value="20">20개씩 보기</option>
+		</select>
+		
+		<button type="submit">SEARCH</button>
 
+	</form>
+	<!------------------- perPage select form --------------------->
+		
+	
+	
 	<table>
 		<tr>
 			<td>Num</td>
