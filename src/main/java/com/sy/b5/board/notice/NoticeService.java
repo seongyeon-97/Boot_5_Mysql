@@ -45,6 +45,10 @@ public class NoticeService implements BoardService{
 	public List<BoardVO> getSelectList(Pager pager) throws Exception {
 		// TODO Auto-generated method stub
 		pager.makeRow(); // 페이징 처리를 위해
+		
+		// 1. 총 글의 갯수를 db에서 조회
+		Long totalCount = noticeMapper.getTotalCount(pager);
+		System.out.println("총 글의 갯수 : " + totalCount);
 		return noticeMapper.getSelectList(pager);
 	}
 

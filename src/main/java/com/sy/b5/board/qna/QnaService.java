@@ -44,6 +44,7 @@ public class QnaService implements BoardService{
 	public List<BoardVO> getSelectList(Pager pager) throws Exception {
 		// TODO Auto-generated method stub
 		pager.makeRow();
+		Long totalCount = qnaMapper.getTotalCount(pager);
 		return qnaMapper.getSelectList(pager);
 	}
 

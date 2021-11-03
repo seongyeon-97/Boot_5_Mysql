@@ -40,4 +40,16 @@
 		order by num desc
 		limit #{startRow}, #{perPage}
 	</select>
+	
+	<select id="getTotalCount" resultType="Long" parameterType="Pager">
+		select count(num) from qna
+		where 
+			<choose>
+				<when test="kind == 'title'">title</when>
+				<when test="kind == 'writer'">writer</when>
+				<!-- <when test="kind == 'contents'">contents</when> -->
+				<otherwise>contents</otherwise>
+			</choose>
+		like concat('%', #{search}, '%')
+	</select>
   </mapper>
