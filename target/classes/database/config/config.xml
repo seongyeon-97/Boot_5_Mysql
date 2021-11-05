@@ -11,6 +11,8 @@
   		<typeAlias type="com.sy.b5.board.notice.NoticeVO" alias="NoticeVO"/>  		  	
   		<typeAlias type="com.sy.b5.board.qna.QnaVO" alias="QnaVO"/>
   		<typeAlias type="com.sy.b5.util.Pager" alias="Pager"/>
+  		<typeAlias type="com.sy.b5.member.MemberVO" alias="MemberVO"/>
+  		<typeAlias type="com.sy.b5.member.MemberFilesVO" alias="MemberFilesVO"/>
   		
   		<typeAlias type="java.lang.Long" alias="Long"/>
   		<typeAlias type="java.util.List" alias="List"/>

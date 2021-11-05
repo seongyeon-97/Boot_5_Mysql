@@ -10,7 +10,6 @@
 <body>
 	<h1>Index Page</h1>
 	
-	<img alt="son.jpg" src="./images/son.jpg">
-	<img alt="son2.jpg" src="./front/son2.jpg">
+	
 </body>
 </html>
