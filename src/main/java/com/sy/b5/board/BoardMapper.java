@@ -5,6 +5,9 @@ import java.util.List;
 import com.sy.b5.util.Pager;
 
 public interface BoardMapper {
+	// 파일 저장
+	public int setFileInsert(BoardFileVO boardFileVO) throws Exception;
+	
 	//Insert 글쓰기
 	public int setInsert(BoardVO boardVO) throws Exception;
 	

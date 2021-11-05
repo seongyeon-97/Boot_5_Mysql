@@ -12,6 +12,7 @@ import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.multipart.MultipartFile;
 import org.springframework.web.servlet.ModelAndView;
 
 import com.sy.b5.board.BoardVO;
@@ -39,8 +40,10 @@ public class NoticeController {
 
 	// notice/insert -> DB 처리, 파리미터 o(title, contents, writer)
 	@PostMapping("insert")
-	public String setInsert(BoardVO boardVO) throws Exception {		
-		int result = noticeService.setInsert(boardVO);
+	public String setInsert(BoardVO boardVO, MultipartFile [] files) throws Exception {		
+			
+		
+		int result = noticeService.setInsert(boardVO, files); 
 		return "redirect: ./selectList";
 		
 		/*
@@ -87,6 +90,7 @@ public class NoticeController {
 		// 파라미터 값을 int num으로 받을때
 		// BoardVO boardVO = new BoardVO();
 		// boardVO.setNum(num);
+		
 		ModelAndView mv = new ModelAndView();
 		boardVO = noticeService.getSelectOne(boardVO);
 		mv.setViewName("board/select");
@@ -104,6 +108,7 @@ public class NoticeController {
 		List<BoardVO> ar = noticeService.getSelectList(pager);
 		mv.setViewName("board/list");
 		mv.addObject("boardList", ar);
+		mv.addObject("pager", pager);
 		return mv;
 	}
 

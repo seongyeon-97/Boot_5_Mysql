@@ -8,12 +8,14 @@
 </head>
 <body>
 	<h1>${board} Insert Page</h1>
-	<form action="./insert" method="post">
+	<form action="./insert" method="post" enctype="multipart/form-data">
 	
 		title : <input type="text" name="title"><br>
 		writer : <input type="text" name="writer"><br>
 		contents : <textarea rows="" cols="" name="contents"></textarea><br>
 		
+		<input type="file" name="files">
+		<input type="file" name="files">
 		<button type="submit">INSERT</button>
 		
 	</form>

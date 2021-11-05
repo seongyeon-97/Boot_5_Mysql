@@ -13,6 +13,11 @@ public class Pager {
 	private Integer pn; //현재 페이지 번호
 	private Integer startRow; //시작 번호
 	
+	private Long startNum;
+	private Long lastNum;
+	
+	private boolean lastCheck; //true면 마지막 블럭이다, false면 마지막 블럭이 아니다
+	
 	//------------------------------------------------------------
 	
 	public void makeRow() {
@@ -48,11 +53,16 @@ public class Pager {
 		//    1         1         5
 		//    2         6         10
 		//    3         11        15
-		Long startNum = (curBlock-1)*perBlock+1;
-		Long lastNum = curBlock*5;
+		startNum = (curBlock-1)*perBlock+1;
+		lastNum = curBlock*5;		
 		
 		System.out.println("시작번호 : " + startNum);
 		System.out.println("끝번호 : " + lastNum);
+		
+		if(curBlock == totalBlock) {
+			lastCheck = true;
+			lastNum = totalPage;
+		}
 		
 	}
 	
@@ -76,7 +86,7 @@ public class Pager {
 	
 	public String getSearch() {
 		if(this.search == null) {
-			this.search = "";
+			this.search = "";			
 		}
 		return this.search;
 	}
