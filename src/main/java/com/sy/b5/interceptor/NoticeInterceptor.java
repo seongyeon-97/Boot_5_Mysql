@@ -29,7 +29,8 @@ public class NoticeInterceptor implements HandlerInterceptor{
 			//response.sendRedirect("../member/memberLogin");			
 			request.setAttribute("msg", "관리자만 가능한 권한 입니다.");
 			request.setAttribute("path", "./selectList");			
-			RequestDispatcher view  = request.getRequestDispatcher("/WEB-INF/views/common/result.jsp");					
+			RequestDispatcher view  = request.getRequestDispatcher("/WEB-INF/views/common/result.jsp");
+			view.forward(request, response);
 		}
 		
 		return check;
