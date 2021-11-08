@@ -22,7 +22,7 @@ public class MemberController {
 	}
 	
 	@PostMapping("memberJoin")
-	public String setInsert(MemberVO memberVO, MultipartFile [] files) throws Exception{
+	public String setInsert(MemberVO memberVO, MultipartFile files) throws Exception{
 		int result = memberService.setInsert(memberVO, files);
 		return "redirect:../";
 	}
