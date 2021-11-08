@@ -13,4 +13,8 @@
   		insert into memberFiles
   		values(null, #{member_id}, #{fileName}, #{oriName})
   	</insert>
+  	
+  	<select id="getLogin" parameterType="MemberVO" resultType="MemberVO">
+  		select * from member where id = #{id} and pw = #{pw}
+  	</select>  	
   </mapper>
