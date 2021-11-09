@@ -3,10 +3,12 @@ package com.sy.b5.board.notice;
 import java.util.List;
 
 import javax.servlet.http.HttpServletRequest;
+import javax.validation.Valid;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
+import org.springframework.validation.BindingResult;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PostMapping;
@@ -33,17 +35,21 @@ public class NoticeController {
 	// notice/insert -> 입력폼 제공, 파리미터 x
 	// 서버 내부에서 jsp로 이동 -> forword
 	// 응답으로 html이 아닌 url 주소를 리턴하는 것 -> redirect -> 웹브라우저는 받은 url 주소로 다시 요청을 보냄 
-	@GetMapping("insert")
-	public String setInsert() throws Exception {
+	@GetMapping("insert") // boardVO를 model에 담아서 보내는것
+	public String setInsert(@ModelAttribute BoardVO boardVO) throws Exception {
 		return "board/insert";
 	}
 
 	// notice/insert -> DB 처리, 파리미터 o(title, contents, writer)
 	@PostMapping("insert")
-	public String setInsert(BoardVO boardVO, MultipartFile [] files) throws Exception {		
-			
+	public String setInsert(@Valid BoardVO boardVO, BindingResult bindingResult, MultipartFile [] files) throws Exception {		
 		
-		int result = noticeService.setInsert(boardVO, files); 
+		if(bindingResult.hasErrors()) {
+			return "board/insert";
+		}
+		
+		
+//		int result = noticeService.setInsert(boardVO, files); 
 		return "redirect: ./selectList";
 		
 		/*

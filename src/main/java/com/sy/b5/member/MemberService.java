@@ -3,6 +3,7 @@ package com.sy.b5.member;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
+import org.springframework.validation.BindingResult;
 import org.springframework.web.multipart.MultipartFile;
 
 import com.sy.b5.board.BoardFileVO;
@@ -15,7 +16,23 @@ public class MemberService {
 
 	@Autowired
 	private FileManager fileManager;
-
+	
+	// 검증하는 메서드 선언
+	public boolean memberError(MemberVO memberVO, BindingResult bindingResult) throws Exception{
+		boolean check = false; // false이면 검증 성공, true면 검증 실패(에러, 위반 발생)
+		
+		// 1. Annotation 검증
+		check = bindingResult.hasErrors();
+		
+		// 2. pw가 일치하는지 검증
+		if(memberVO.getPw().equals(memberVO.getPwCheck())) {
+			bindingResult.reject("pwCheck", "pwCheck");
+			check = true;
+		}
+		
+		return check;
+	}
+	
 	@Transactional(rollbackFor = Exception.class)
 	public int setInsert(MemberVO memberVO, MultipartFile files) throws Exception {
 

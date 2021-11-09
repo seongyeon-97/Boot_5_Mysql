@@ -23,9 +23,29 @@
 		delete from qna where num=#{num}
 	</delete>
 	
-	<select id="getSelectOne" parameterType="BoardVO" resultType="QnaVO">
-		select * from qna where num=#{num}
+	<select id="getSelectOne" parameterType="BoardVO" resultMap="selectResult">
+		select N.*, NF.* from
+		qna N
+		left join
+		qnaFiles NF
+		on (N.num = NF.num)
+		where N.num = #{num}
 	</select>
+	
+	<resultMap type="QnaVO" id="selectResult">
+		<id column="num" property="num" />
+		<result column="title" property="title" />
+		<result column="contents" property="contents" />
+		<result column="writer" property="writer" />
+		<result column="hit" property="hit" />
+		<result column="regDate" property="regDate" />
+		<collection property="fileList" javaType="List"
+			ofType="BoardFileVO">
+			<id column="fileNum" property="fileNum" />
+			<result column="fileName" property="fileName" />
+			<result column="oriName" property="oriName" />
+		</collection>
+	</resultMap>
 	
 	<select id="getSelectList" resultType="QnaVO">
 		select * from qna 
