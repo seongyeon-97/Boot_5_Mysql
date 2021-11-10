@@ -15,4 +15,7 @@ public interface MemberRepository {
 	
 	// 로그인
 	public MemberVO getLogin(MemberVO memberVO) throws Exception;
+	
+	// id 중복확인
+	public MemberVO getSelect(MemberVO memberVO) throws Exception;
 }

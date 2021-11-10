@@ -18,7 +18,7 @@ public class BoardVO {
 	private String title;
 	@Length(min = 6, max = 20)
 	private String contents;
-	@Size(min = 3, max = 6)
+	@Size(min = 4, max = 10)
 	private String writer;
 	private Integer hit;
 	private Date regDate;

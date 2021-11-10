@@ -26,7 +26,14 @@ public class MemberService {
 		
 		// 2. pw가 일치하는지 검증
 		if(memberVO.getPw().equals(memberVO.getPwCheck())) {
-			bindingResult.reject("pwCheck", "pwCheck");
+			bindingResult.rejectValue("pwCheck", "pwCheck");
+			check = true;
+		}
+		
+		memberVO = memberRepository.getSelect(memberVO);
+		
+		if(memberVO !=null) {
+			bindingResult.rejectValue("id", "member.id.equals");
 			check = true;
 		}
 		

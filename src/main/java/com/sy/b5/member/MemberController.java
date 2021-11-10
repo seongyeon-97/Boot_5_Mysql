@@ -20,12 +20,12 @@ public class MemberController {
 	private MemberService memberService;
 	
 	@GetMapping("memberJoin")
-	public String setInsert(@ModelAttribute MemberVO memberVO) throws Exception{
-		return "member/memberJoin";
+	public void setInsert(@ModelAttribute MemberVO memberVO) throws Exception{
+		//return "member/memberJoin";
 	}
 	
 	@PostMapping("memberJoin")
-	public String setInsert(@Valid MemberVO memberVO, BindingResult bindingResult, MultipartFile  files) throws Exception{
+	public String setInsert(@Valid MemberVO memberVO, BindingResult bindingResult, MultipartFile files) throws Exception{
 		if(memberService.memberError(memberVO, bindingResult)) {
 			return "member/memberJoin";
 		}
