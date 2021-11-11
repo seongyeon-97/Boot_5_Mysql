@@ -1,6 +1,9 @@
 package com.sy.b5.member;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.security.core.userdetails.UserDetails;
+import org.springframework.security.core.userdetails.UserDetailsService;
+import org.springframework.security.core.userdetails.UsernameNotFoundException;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 import org.springframework.validation.BindingResult;
@@ -10,7 +13,7 @@ import com.sy.b5.board.BoardFileVO;
 import com.sy.b5.util.FileManager;
 
 @Service
-public class MemberService {
+public class MemberService implements UserDetailsService{
 	@Autowired
 	private MemberRepository memberRepository;
 
@@ -40,6 +43,22 @@ public class MemberService {
 		return check;
 	}
 	
+	@Override
+	public UserDetails loadUserByUsername(String username) throws UsernameNotFoundException {
+		System.out.println("Load User By UserName");
+		System.out.println(username);
+		MemberVO memberVO = null;
+		try {
+			memberVO = memberRepository.getLogin(username);
+		} catch (Exception e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+		
+		// Spring security UserDetails 리턴 받아서 비번을 비교 진행
+		return memberVO;
+	}
+	
 	@Transactional(rollbackFor = Exception.class)
 	public int setInsert(MemberVO memberVO, MultipartFile files) throws Exception {
 
@@ -62,8 +81,10 @@ public class MemberService {
 
 	}
 
-	public MemberVO getLogin(MemberVO memberVO) throws Exception {
-		return memberRepository.getLogin(memberVO);
-
-	}
+	/*
+	 * public MemberVO getLogin(MemberVO memberVO) throws Exception { return
+	 * memberRepository.getLogin(memberVO);
+	 * 
+	 * }
+	 */
 }

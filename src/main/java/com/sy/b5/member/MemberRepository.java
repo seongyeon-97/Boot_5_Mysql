@@ -14,7 +14,7 @@ public interface MemberRepository {
 	public int setFileInsert(MemberFilesVO memberFilesVO) throws Exception;
 	
 	// 로그인
-	public MemberVO getLogin(MemberVO memberVO) throws Exception;
+	public MemberVO getLogin(String username) throws Exception;
 	
 	// id 중복확인
 	public MemberVO getSelect(MemberVO memberVO) throws Exception;

@@ -36,18 +36,18 @@ public class MemberController {
 	
 	@GetMapping("memberLogin")
 	public String getLogin() throws Exception{
+		System.out.println("memberLogin");
 		return "/member/memberLogin";
 	}
 	
-	@PostMapping("memberLogin")
-	public String getLogin(MemberVO memberVO, HttpSession session) throws Exception{		
-		memberVO = memberService.getLogin(memberVO);
-		
-		if(memberVO != null) {
-			session.setAttribute("member", memberVO);
-		}
-		return "redirect:../";
-	}
+	/*
+	 * @PostMapping("memberLogin") public String getLogin(MemberVO memberVO,
+	 * HttpSession session) throws Exception{ memberVO =
+	 * memberService.getLogin(memberVO);
+	 * 
+	 * if(memberVO != null) { session.setAttribute("member", memberVO); } return
+	 * "redirect:../"; }
+	 */
 	
 	@GetMapping("memberLogout")
 	public String getLogout(HttpSession session) throws Exception{

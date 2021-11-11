@@ -13,6 +13,7 @@
   		<typeAlias type="com.sy.b5.util.Pager" alias="Pager"/>
   		<typeAlias type="com.sy.b5.member.MemberVO" alias="MemberVO"/>
   		<typeAlias type="com.sy.b5.member.MemberFilesVO" alias="MemberFilesVO"/>
+  		<typeAlias type="com.sy.b5.member.RoleVO" alias="RoleVO"/>
   		
   		<typeAlias type="java.lang.Long" alias="Long"/>
   		<typeAlias type="java.util.List" alias="List"/>

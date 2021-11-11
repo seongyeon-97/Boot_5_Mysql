@@ -9,7 +9,7 @@
 <body>
 	<h1>MemberLogin page</h1>
 	
-	<form action="./memberLogin" method="post" enctype="multipart/form-data">
+	<form action="./memberLogin" method="post">
 		
 		id : <input type="text" name="id"><br>
 		pw : <input type="text" name="pw"><br>
