@@ -20,7 +20,7 @@ import org.springframework.security.core.userdetails.UserDetails;
 import lombok.Data;
 
 @Data
-public class MemberVO implements UserDetails{
+public class MemberVO{
 	
 	@NotBlank
 	private String id;
